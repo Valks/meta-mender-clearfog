@@ -1,0 +1,8 @@
+# short-description: Create SD card image with a boot partition
+# long-description:
+# Create an image that can be written onto a SD card using dd for use with clearfog machine.
+#
+part /boot --source bootimg-partition --ondisk sda --fstype=vfat --label boot --active --align 4096 --size 16M --extra-space 0
+part / --source rootfs --ondisk mmcblk --fstype=ext4 --label root --align 4096
+
+bootloader --ptable msdos

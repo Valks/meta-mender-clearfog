@@ -1,0 +1,5 @@
+load mmc 0:1 ${kernel_addr_r} @@KERNEL_IMAGETYPE@@
+load mmc 0:1 ${fdt_addr_r} @@KERNEL_DEVICETREE@@
+
+setenv bootargs root=/dev/mmcblk0p2 rw rootwait
+bootz ${kernel_addr_r} - ${fdt_addr_r}
