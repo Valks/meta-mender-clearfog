@@ -23,25 +23,26 @@ in addition to `meta-mender` dependencies.
     - clearfog-gtr-s18
 - Add following to your local.conf (including configuration required by meta-mender-core)
 
-        RPI_USE_U_BOOT = "1"
+        # Have to manually specify the DTB file to use with Mender
+        # 
+        #    armada-388-clearfog.dtb        - Clearfog
+        #    armada-388-clearfog-base.dtb   - Clearfog Base
+        #    armada-388-clearfog-pro.dtb    - Clearfog Pro
+        #    armada-388-clearfog-gtr-s4.dtb - Clearfog GTR S4
+        #    armada-388-clearfog-gtr-l8.dtb - Clearfog GTR L8
+        #
+        MENDER_DTB_NAME_FORCE ?= "armada-388-clearfog.dtb"
 
-        # These are simply to align with how the "stock" RPi machines are
-        # configured.
-        MENDER_PARTITION_ALIGNMENT = "4194304"
-        MENDER_BOOT_PART_SIZE_MB = "40"
-
-        # rpi-base.inc removes these as they are normally installed on to the
-        # vfat boot partition. To be able to update the Linux kernel Mender
-        # uses an image that resides on the root file system and below line
-        # ensures that they are installed to /boot
-        IMAGE_INSTALL_append = " kernel-image kernel-devicetree"
-
-        # Mender will build an image called `sdimg` which shall be used instead
-        # of the `rpi-sdimg`.
-        IMAGE_FSTYPES_remove += " rpi-sdimg"
-
-        # Use the same type here as specified in ARTIFACTIMG_FSTYPE to avoid
-        # building an unneeded image file.
-        SDIMG_ROOTFS_TYPE = "ext4"
+        # Depending on which boot medium is selected the U-boot binary will change name
+        #
+        #    u-boot-spl-mmc.kwb
+        #    u-boot-spl-nand.kwb"
+        #    u-boot-spl-sata.kwb"
+        #    u-boot-spl-sdhc.kwb"
+        #    u-boot-spl-spi.kwb
+        #
+        # Update this variable to change boot location, it will update
+        # MVEBU_SPL_BOOT_DEVICE_XXX
+        UBOOT_BINARY ?= "u-boot-spl-sdhc.kwb"
 
 - Run `bitbake <image name>`

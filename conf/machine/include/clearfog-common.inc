@@ -1,3 +1,13 @@
+# Have to manually specify the DTB file to use with Mender
+# 
+#    armada-388-clearfog.dtb        - Clearfog
+#    armada-388-clearfog-base.dtb   - Clearfog Base
+#    armada-388-clearfog-pro.dtb    - Clearfog Pro
+#    armada-388-clearfog-gtr-s4.dtb - Clearfog GTR S4
+#    armada-388-clearfog-gtr-l8.dtb - Clearfog GTR L8
+#
+MENDER_DTB_NAME_FORCE ?= "armada-388-clearfog.dtb"
+
 # Depending on which boot medium is selected the U-boot binary will change name
 #
 #    u-boot-spl-mmc.kwb
