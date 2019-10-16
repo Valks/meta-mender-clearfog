@@ -18,31 +18,31 @@ in addition to `meta-mender` dependencies.
 
 - Read [the Mender documentation on Building a Mender Yocto image](https://docs.mender.io/Artifacts/Building-Mender-Yocto-image) for Mender specific configuration.
 - Set MACHINE to one of the following
-    - clearfog
-    - clearfog-gtr-s4
-    - clearfog-gtr-s18
+  - clearfog
+  - clearfog-gtr-s4
+  - clearfog-gtr-s18
 - Add following to your local.conf (including configuration required by meta-mender-core)
 
-        # Have to manually specify the DTB file to use with Mender
-        # 
-        #    armada-388-clearfog.dtb        - Clearfog
-        #    armada-388-clearfog-base.dtb   - Clearfog Base
-        #    armada-388-clearfog-pro.dtb    - Clearfog Pro
-        #    armada-388-clearfog-gtr-s4.dtb - Clearfog GTR S4
-        #    armada-388-clearfog-gtr-l8.dtb - Clearfog GTR L8
-        #
-        MENDER_DTB_NAME_FORCE ?= "armada-388-clearfog.dtb"
+      # Have to manually specify the DTB file to use with Mender
+      # 
+      #    armada-388-clearfog.dtb        - Clearfog
+      #    armada-388-clearfog-base.dtb   - Clearfog Base
+      #    armada-388-clearfog-pro.dtb    - Clearfog Pro
+      #    armada-388-clearfog-gtr-s4.dtb - Clearfog GTR S4
+      #    armada-388-clearfog-gtr-l8.dtb - Clearfog GTR L8
+      #
+      MENDER_DTB_NAME_FORCE ?= "armada-388-clearfog.dtb"
 
-        # Depending on which boot medium is selected the U-boot binary will change name
-        #
-        #    u-boot-spl-mmc.kwb
-        #    u-boot-spl-nand.kwb"
-        #    u-boot-spl-sata.kwb"
-        #    u-boot-spl-sdhc.kwb"
-        #    u-boot-spl-spi.kwb
-        #
-        # Update this variable to change boot location, it will update
-        # MVEBU_SPL_BOOT_DEVICE_XXX
-        UBOOT_BINARY ?= "u-boot-spl-sdhc.kwb"
+      # Depending on which boot medium is selected the U-boot binary will change name
+      #
+      #    u-boot-spl-mmc.kwb
+      #    u-boot-spl-nand.kwb"
+      #    u-boot-spl-sata.kwb"
+      #    u-boot-spl-sdhc.kwb"
+      #    u-boot-spl-spi.kwb
+      #
+      # Update this variable to change boot location, it will update
+      # MVEBU_SPL_BOOT_DEVICE_XXX
+      UBOOT_BINARY ?= "u-boot-spl-sdhc.kwb"
 
 - Run `bitbake <image name>`
