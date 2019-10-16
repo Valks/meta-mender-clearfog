@@ -20,5 +20,7 @@ MENDER_DTB_NAME_FORCE ?= "armada-388-clearfog.dtb"
 # MVEBU_SPL_BOOT_DEVICE_XXX
 UBOOT_BINARY ?= "u-boot-spl-sdhc.kwb"
 
+MACHINE_FEATURES = "vfat"
+
 WKS_FILE = "clearfog.wks"
 WKS_FILE_DEPENDS = "virtual/bootloader clearfog-u-boot-scr"
